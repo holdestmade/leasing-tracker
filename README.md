@@ -132,9 +132,6 @@ automation:
 
 ## 📚 Dokumentation
 
-- [⚡ Schnellstart](SCHNELLSTART.md)
-- [🔧 Troubleshooting](TROUBLESHOOTING.md)
-- [🆙 Update Guide](UPDATE_GUIDE.md)
 - [📝 Changelog](CHANGELOG.md)
 
 ## 🐛 Fehler & Probleme
