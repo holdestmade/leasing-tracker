@@ -85,7 +85,7 @@
 ### Schritt 1: Kilometerstand-Sensor erstellen (Optional)
 (Wenn keine Entität von Ihrem Auto zur verfügung steht)
 
-Fügen Sie in der `configuration.yaml` hinzu:
+Fügen Sie der `configuration.yaml` hinzu:
 
 ```yaml
 input_number:
