@@ -1,15 +1,15 @@
 # Changelog
 
-## [1.1.2] - 2024-02-04
+## [1.1.2] - 04-02-2026
 
 - Weitere Änderungen an der Grafiken in HA
 
-## [1.1.1] - 2024-02-04
+## [1.1.1] - 04-02-2026
 
 ### Hinzugefügt
 - **Bilder und Logos für das Repo und HACS**
 
-## [1.1.0] - 2024-02-04
+## [1.1.0] - 04-02-2026
 
 ### Hinzugefügt
 - **Neue Sensoren für tatsächliche Werte (ohne Schätzung):**
@@ -38,7 +38,7 @@
   - Genauere Berechnung der erlaubten KM pro Monat/Jahr
   - Berücksichtigung von anteiligen Monaten/Jahren bei Leasingbeginn
 
-## [1.0.0] - 2024-02-03
+## [1.0.0] - 04-02-2026
 
 ### Initial Release
 - Erste Version des Leasing Trackers
