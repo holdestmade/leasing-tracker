@@ -1,10 +1,32 @@
 # 🚗 Leasing Tracker für Home Assistant
 
-[![GitHub Release](https://img.shields.io/github/release/foxxxhater/hacs_leasing_tracker.svg?style=flat-square)](https://github.com/foxxxhater/hacs_leasing_tracker/releases)
-[![GitHub](https://img.shields.io/github/license/foxxxhater/hacs_leasing_tracker.svg?style=flat-square)](LICENSE)
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=flat-square)](https://github.com/hacs/integration)
+<p align="center">
+  <img src="banner.svg" alt="Leasing Tracker Banner" width="100%">
+</p>
 
-Eine Custom Integration für Home Assistant, um Leasingfahrzeuge zu überwachen und verbleibende Kilometer zu berechnen.
+<p align="center">
+  <a href="https://github.com/DEIN-USERNAME/leasing_tracker/releases">
+    <img src="https://img.shields.io/github/release/DEIN-USERNAME/leasing_tracker.svg?style=flat-square" alt="GitHub Release">
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/github/license/DEIN-USERNAME/leasing_tracker.svg?style=flat-square" alt="License">
+  </a>
+  <a href="https://github.com/hacs/integration">
+    <img src="https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=flat-square" alt="HACS">
+  </a>
+</p>
+
+<p align="center">
+  Eine Custom Integration für Home Assistant, um Leasingfahrzeuge zu überwachen und verbleibende Kilometer zu berechnen.
+</p>
+
+---
+
+## 📸 Screenshot
+
+<p align="center">
+  <img src="screenshot.svg" alt="Dashboard Screenshot" width="80%">
+</p>
 
 ## ✨ Features
 
