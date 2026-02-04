@@ -138,14 +138,6 @@ automation:
 - [📝 Changelog](CHANGELOG.md)
 
 ## 🐛 Fehler & Probleme
-
-### "Invalid handler specified" Fehler?
-→ Siehe [QUICK_FIX.md](QUICK_FIX.md)
-
-### Andere Probleme?
-→ Siehe [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
-
-### Immer noch nicht gelöst?
 → [Issue erstellen](https://github.com/foxxxhater/hacs_leasing_tracker/issues)
 
 ## 🤝 Beitragen
