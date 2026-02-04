@@ -43,16 +43,14 @@ Eine Custom Integration für Home Assistant, um Leasingfahrzeuge zu überwachen 
 - Erlaubte KM diesen Monat
 - Erlaubte KM pro Monat (Durchschnitt)
 
-[... und mehr! Siehe vollständige Liste in der Dokumentation]
-
 ## 🚀 Installation
 
 ### Via HACS (empfohlen)
 
-1. HACS öffnen in Home Assistant
+1. HACS in Home Assistant öffnen
 2. "Integrationen" → ⋮ → "Benutzerdefinierte Repositories"
 3. Repository hinzufügen:
-   - URL: `https://github.com/DEIN-USERNAME/leasing_tracker`
+   - URL: `https://github.com/foxxxhater/hacs_leasing_tracker`
    - Kategorie: "Integration"
 4. "Leasing Tracker" suchen und installieren
 5. Home Assistant neu starten
@@ -60,19 +58,18 @@ Eine Custom Integration für Home Assistant, um Leasingfahrzeuge zu überwachen 
 
 ### Manuell
 
-1. Lade die neueste Version herunter: [Releases](https://github.com/foxxxhater/hacs_leasing_tracker/releases)
-2. Entpacke das Archiv
-3. Kopiere den `leasing_tracker` Ordner nach `custom_components/`
+1. Lade Sie die neueste Version herunter: [Releases](https://github.com/foxxxhater/hacs_leasing_tracker/releases)
+2. Entpacke Sie das Archiv
+3. Kopieren Sie den `leasing_tracker` Ordner nach `custom_components/`
 4. Home Assistant neu starten
 5. Integration über UI hinzufügen
-
-📖 **Detaillierte Anleitung:** [INSTALLATION_GUIDE.md](INSTALLATION_GUIDE.md)
 
 ## ⚙️ Konfiguration
 
 ### Schritt 1: Kilometerstand-Sensor erstellen (Optional)
+(Wenn keine Entität von Ihrem Auto zur verfügung steht)
 
-Füge in `configuration.yaml` hinzu:
+Fügen Sie in der `configuration.yaml` hinzu:
 
 ```yaml
 input_number:
@@ -115,8 +112,6 @@ entities:
   - sensor.bmw_3er_gefahrene_km
 ```
 
-📖 **Mehr Beispiele:** [DASHBOARD_EXAMPLES.md](DASHBOARD_EXAMPLES.md)
-
 ## 🔔 Beispiel Automatisierung
 
 Benachrichtigung bei zu vielen Kilometern:
@@ -137,8 +132,6 @@ automation:
 
 ## 📚 Dokumentation
 
-- [📖 Installationsanleitung](INSTALLATION_GUIDE.md)
-- [🎨 Dashboard Beispiele](DASHBOARD_EXAMPLES.md)
 - [⚡ Schnellstart](SCHNELLSTART.md)
 - [🔧 Troubleshooting](TROUBLESHOOTING.md)
 - [🆙 Update Guide](UPDATE_GUIDE.md)
