@@ -33,6 +33,8 @@ A huge Thanks to all great Dev out there!
 
 ---
 
+## <a href="https://github.com/FoxXxHater/leasing-tracker/blob/main/README-DE.md">Deutsche README
+
 ## ✨ Features
 
 - ✅ **22 automatic sensors** - Comprehensive monitoring of all leasing data
