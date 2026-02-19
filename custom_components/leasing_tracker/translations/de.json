@@ -108,7 +108,13 @@
         "name": "KM Differenz zum Plan"
       },
       "status": {
-        "name": "Status"
+        "name": "Status",
+        "state": {
+          "far_above_plan": "Deutlich über Plan",
+          "above_plan": "Über Plan",
+          "on_track": "Im Plan",
+          "below_plan": "Unter Plan"
+        }
       }
     }
   }
