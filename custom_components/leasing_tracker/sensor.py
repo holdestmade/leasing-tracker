@@ -130,42 +130,49 @@ class LeasingTrackerSensor(SensorEntity):
                 "unit": UnitOfLength.KILOMETERS,
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
+                "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_REMAINING_KM_YEAR: {
                 "icon": "mdi:calendar-clock",
                 "unit": UnitOfLength.KILOMETERS,
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
+                "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_REMAINING_KM_MONTH: {
                 "icon": "mdi:calendar-month",
                 "unit": UnitOfLength.KILOMETERS,
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
+                "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_REMAINING_KM_YEAR_ACTUAL: {
                 "icon": "mdi:calendar-today",
                 "unit": UnitOfLength.KILOMETERS,
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
+                "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_REMAINING_KM_MONTH_ACTUAL: {
                 "icon": "mdi:calendar-month-outline",
                 "unit": UnitOfLength.KILOMETERS,
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
+                "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_ESTIMATED_KM_YEAR_END: {
                 "icon": "mdi:chart-timeline-variant",
                 "unit": UnitOfLength.KILOMETERS,
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
+                "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_ESTIMATED_KM_MONTH_END: {
                 "icon": "mdi:chart-bell-curve",
                 "unit": UnitOfLength.KILOMETERS,
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
+                "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_REMAINING_DAYS: {
                 "icon": "mdi:calendar-end",
@@ -182,18 +189,21 @@ class LeasingTrackerSensor(SensorEntity):
                 "unit": UnitOfLength.KILOMETERS,
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.TOTAL_INCREASING,
+                "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_KM_DRIVEN_THIS_MONTH: {
                 "icon": "mdi:calendar-check",
                 "unit": UnitOfLength.KILOMETERS,
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
+                "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_KM_DRIVEN_THIS_YEAR: {
                 "icon": "mdi:calendar-star",
                 "unit": UnitOfLength.KILOMETERS,
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
+                "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_KM_PER_DAY_AVERAGE: {
                 "icon": "mdi:chart-line",
@@ -209,6 +219,7 @@ class LeasingTrackerSensor(SensorEntity):
                 "icon": "mdi:car-info",
                 "unit": UnitOfLength.KILOMETERS,
                 "device_class": SensorDeviceClass.DISTANCE,
+                "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_ALLOWED_KM_PER_MONTH: {
                 "icon": "mdi:calendar-check",
@@ -218,11 +229,13 @@ class LeasingTrackerSensor(SensorEntity):
                 "icon": "mdi:calendar-text",
                 "unit": UnitOfLength.KILOMETERS,
                 "device_class": SensorDeviceClass.DISTANCE,
+                "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_ALLOWED_KM_THIS_MONTH: {
                 "icon": "mdi:calendar-outline",
                 "unit": UnitOfLength.KILOMETERS,
                 "device_class": SensorDeviceClass.DISTANCE,
+                "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_DAYS_TOTAL: {
                 "icon": "mdi:calendar-today",
@@ -237,6 +250,7 @@ class LeasingTrackerSensor(SensorEntity):
                 "unit": UnitOfLength.KILOMETERS,
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
+                "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_STATUS: {
                 "icon": "mdi:information",
@@ -252,11 +266,14 @@ class LeasingTrackerSensor(SensorEntity):
 
         config = sensor_configs.get(self._sensor_type, {})
         self._attr_icon = config.get("icon")
+
         self._attr_native_unit_of_measurement = config.get("unit")
         if "device_class" in config:
             self._attr_device_class = config["device_class"]
         if "state_class" in config:
             self._attr_state_class = config["state_class"]
+        if "suggested_unit" in config:
+            self._attr_suggested_unit_of_measurement = config["suggested_unit"]
         if "options" in config:
             self._attr_options = config["options"]
 
