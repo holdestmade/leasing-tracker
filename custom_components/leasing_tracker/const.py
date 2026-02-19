@@ -9,7 +9,10 @@ CONF_START_DATE = "start_date"
 CONF_END_DATE = "end_date"
 CONF_START_KM = "start_km"
 CONF_KM_PER_YEAR = "km_per_year"
+CONF_DISTANCE_UNIT = "distance_unit"
 
+UNIT_KILOMETERS = "km"
+UNIT_MILES = "mi"
 # Sensor types
 SENSOR_REMAINING_KM_TOTAL = "remaining_km_total"
 SENSOR_REMAINING_KM_YEAR = "remaining_km_year"

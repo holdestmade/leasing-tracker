@@ -10,7 +10,8 @@
           "start_date": "Lease Start Date",
           "end_date": "Lease End Date",
           "start_km": "Mileage at Start",
-          "km_per_year": "Allowed Kilometers per Year"
+          "km_per_year": "Allowed Mileage per Year",
+          "distance_unit": "Distance Unit"
         }
       }
     },
@@ -33,7 +34,8 @@
           "start_date": "Lease Start Date",
           "end_date": "Lease End Date",
           "start_km": "Mileage at Start",
-          "km_per_year": "Allowed Kilometers per Year"
+          "km_per_year": "Allowed Mileage per Year",
+          "distance_unit": "Distance Unit"
         }
       }
     },
@@ -45,25 +47,25 @@
   "entity": {
     "sensor": {
       "remaining_km_total": {
-        "name": "Remaining KM Total"
+        "name": "Remaining Mileage Total"
       },
       "remaining_km_year": {
-        "name": "Estimated Remaining KM This Year"
+        "name": "Estimated Remaining Mileage This Year"
       },
       "remaining_km_month": {
-        "name": "Estimated Remaining KM This Month"
+        "name": "Estimated Remaining Mileage This Month"
       },
       "remaining_km_year_actual": {
-        "name": "Remaining KM This Year"
+        "name": "Remaining Mileage This Year"
       },
       "remaining_km_month_actual": {
-        "name": "Remaining KM This Month"
+        "name": "Remaining Mileage This Month"
       },
       "estimated_km_year_end": {
-        "name": "Estimated KM at Year End"
+        "name": "Estimated Mileage at Year End"
       },
       "estimated_km_month_end": {
-        "name": "Estimated KM at Month End"
+        "name": "Estimated Mileage at Month End"
       },
       "remaining_days": {
         "name": "Remaining Days"
@@ -72,31 +74,31 @@
         "name": "Remaining Months"
       },
       "total_km_driven": {
-        "name": "Total KM Driven"
+        "name": "Total Mileage Driven"
       },
       "km_driven_this_month": {
-        "name": "KM Driven This Month"
+        "name": "Mileage Driven This Month"
       },
       "km_driven_this_year": {
-        "name": "KM Driven This Year"
+        "name": "Mileage Driven This Year"
       },
       "km_per_day_average": {
-        "name": "Average KM per Day"
+        "name": "Average Mileage per Day"
       },
       "km_per_month_average": {
-        "name": "Average KM per Month"
+        "name": "Average Mileage per Month"
       },
       "allowed_km_total": {
-        "name": "Allowed KM Total"
+        "name": "Allowed Mileage Total"
       },
       "allowed_km_per_month": {
-        "name": "Allowed KM per Month (Average)"
+        "name": "Allowed Mileage per Month (Average)"
       },
       "allowed_km_this_year": {
-        "name": "Allowed KM This Year"
+        "name": "Allowed Mileage This Year"
       },
       "allowed_km_this_month": {
-        "name": "Allowed KM This Month"
+        "name": "Allowed Mileage This Month"
       },
       "days_total": {
         "name": "Lease Duration in Days"
@@ -105,10 +107,24 @@
         "name": "Progress"
       },
       "km_difference": {
-        "name": "KM Difference to Plan"
+        "name": "Mileage Difference to Plan"
       },
       "status": {
-        "name": "Status"
+        "name": "Status",
+        "state": {
+          "far_above_plan": "Far above plan",
+          "above_plan": "Above plan",
+          "on_track": "On track",
+          "below_plan": "Below plan"
+        }
+      }
+    }
+  },
+  "selector": {
+    "distance_unit": {
+      "options": {
+        "km": "Kilometers",
+        "mi": "Miles"
       }
     }
   }

@@ -19,12 +19,15 @@ from homeassistant.helpers.event import async_track_state_change_event
 
 from .const import (
     CONF_CURRENT_KM_ENTITY,
+    CONF_DISTANCE_UNIT,
     CONF_END_DATE,
     CONF_KM_PER_YEAR,
     CONF_NAME,
     CONF_START_DATE,
     CONF_START_KM,
     DOMAIN,
+    UNIT_KILOMETERS,
+    UNIT_MILES,
     SENSOR_ALLOWED_KM_PER_MONTH,
     SENSOR_ALLOWED_KM_THIS_MONTH,
     SENSOR_ALLOWED_KM_THIS_YEAR,
@@ -93,6 +96,7 @@ class LeasingTrackerSensor(SensorEntity):
     """Representation of a Leasing Tracker Sensor."""
 
     _attr_has_entity_name = True
+    _attr_should_poll = True
 
     def __init__(
         self,
@@ -107,7 +111,9 @@ class LeasingTrackerSensor(SensorEntity):
         self._config = entry.data
         self._sensor_type = sensor_type
         self._attr_unique_id = f"{entry.entry_id}_{sensor_type}"
+        self._attr_translation_key = sensor_type
         self._current_km_entity = self._config[CONF_CURRENT_KM_ENTITY]
+        self._distance_unit = self._config.get(CONF_DISTANCE_UNIT, UNIT_MILES)
         
         # Device Info
         self._attr_device_info = DeviceInfo(
@@ -124,153 +130,146 @@ class LeasingTrackerSensor(SensorEntity):
         """Set up sensor-specific attributes."""
         sensor_configs = {
             SENSOR_REMAINING_KM_TOTAL: {
-                "name": "Verbleibende KM Gesamt",
                 "icon": "mdi:counter",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_REMAINING_KM_YEAR: {
-                "name": "Schätzung Verbleibende KM dieses Jahr",
                 "icon": "mdi:calendar-clock",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_REMAINING_KM_MONTH: {
-                "name": "Schätzung Verbleibende KM diesen Monat",
                 "icon": "mdi:calendar-month",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_REMAINING_KM_YEAR_ACTUAL: {
-                "name": "Verbleibende KM dieses Jahr",
                 "icon": "mdi:calendar-today",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_REMAINING_KM_MONTH_ACTUAL: {
-                "name": "Verbleibende KM diesen Monat",
                 "icon": "mdi:calendar-month-outline",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_ESTIMATED_KM_YEAR_END: {
-                "name": "Schätzung KM am Jahresende",
                 "icon": "mdi:chart-timeline-variant",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_ESTIMATED_KM_MONTH_END: {
-                "name": "Schätzung KM am Monatsende",
                 "icon": "mdi:chart-bell-curve",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_REMAINING_DAYS: {
-                "name": "Verbleibende Tage",
                 "icon": "mdi:calendar-end",
-                "unit": "Tage",
+                "unit": "d",
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_REMAINING_MONTHS: {
-                "name": "Verbleibende Monate",
                 "icon": "mdi:calendar-range",
-                "unit": "Monate",
+                "unit": "mo",
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_TOTAL_KM_DRIVEN: {
-                "name": "Gefahrene KM",
                 "icon": "mdi:speedometer",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.TOTAL_INCREASING,
             },
             SENSOR_KM_DRIVEN_THIS_MONTH: {
-                "name": "Gefahrene KM diesen Monat",
                 "icon": "mdi:calendar-check",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_KM_DRIVEN_THIS_YEAR: {
-                "name": "Gefahrene KM dieses Jahr",
                 "icon": "mdi:calendar-star",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_KM_PER_DAY_AVERAGE: {
-                "name": "Durchschnitt KM pro Tag",
                 "icon": "mdi:chart-line",
-                "unit": "km/Tag",
+                "unit": "distance",
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_KM_PER_MONTH_AVERAGE: {
-                "name": "Durchschnitt KM pro Monat",
                 "icon": "mdi:chart-bar",
-                "unit": "km/Monat",
+                "unit": "distance",
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_ALLOWED_KM_TOTAL: {
-                "name": "Erlaubte KM Gesamt",
                 "icon": "mdi:car-info",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
             },
             SENSOR_ALLOWED_KM_PER_MONTH: {
-                "name": "Erlaubte KM pro Monat (Durchschnitt)",
                 "icon": "mdi:calendar-check",
-                "unit": "km/Monat",
+                "unit": "distance",
             },
             SENSOR_ALLOWED_KM_THIS_YEAR: {
-                "name": "Erlaubte KM dieses Jahr",
                 "icon": "mdi:calendar-text",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
             },
             SENSOR_ALLOWED_KM_THIS_MONTH: {
-                "name": "Erlaubte KM diesen Monat",
                 "icon": "mdi:calendar-outline",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
             },
             SENSOR_DAYS_TOTAL: {
-                "name": "Leasingdauer in Tagen",
                 "icon": "mdi:calendar-today",
-                "unit": "Tage",
+                "unit": "d",
             },
             SENSOR_PROGRESS_PERCENTAGE: {
-                "name": "Fortschritt",
                 "icon": "mdi:progress-clock",
                 "unit": "%",
             },
             SENSOR_KM_DIFFERENCE: {
-                "name": "KM Differenz zum Plan",
                 "icon": "mdi:delta",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_STATUS: {
-                "name": "Status",
                 "icon": "mdi:information",
+                "device_class": SensorDeviceClass.ENUM,
+                "options": [
+                    "far_above_plan",
+                    "above_plan",
+                    "on_track",
+                    "below_plan",
+                ],
             },
         }
 
         config = sensor_configs.get(self._sensor_type, {})
-        self._attr_name = config.get("name")
         self._attr_icon = config.get("icon")
-        self._attr_native_unit_of_measurement = config.get("unit")
+
+        self._attr_native_unit_of_measurement = self._resolve_unit(config.get("unit"))
         if "device_class" in config:
             self._attr_device_class = config["device_class"]
         if "state_class" in config:
             self._attr_state_class = config["state_class"]
+        if "options" in config:
+            self._attr_options = config["options"]
+
+    def _resolve_unit(self, unit_type: str | None) -> str | None:
+        """Resolve displayed unit from selected distance unit."""
+        if unit_type == "distance":
+            return UnitOfLength.MILES if self._distance_unit == UNIT_MILES else UnitOfLength.KILOMETERS
+        return unit_type
 
     async def async_added_to_hass(self) -> None:
         """Register callbacks."""
@@ -447,13 +446,13 @@ class LeasingTrackerSensor(SensorEntity):
         
         # Status ermitteln
         if km_difference > allowed_km_per_month:
-            status = "Deutlich über Plan"
+            status = "far_above_plan"
         elif km_difference > 0:
-            status = "Über Plan"
+            status = "above_plan"
         elif km_difference > -allowed_km_per_month:
-            status = "Im Plan"
+            status = "on_track"
         else:
-            status = "Unter Plan"
+            status = "below_plan"
 
         return {
             # Gesamt

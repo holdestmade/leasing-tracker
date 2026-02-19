@@ -14,12 +14,15 @@ import homeassistant.helpers.config_validation as cv
 
 from .const import (
     CONF_CURRENT_KM_ENTITY,
+    CONF_DISTANCE_UNIT,
     CONF_END_DATE,
     CONF_KM_PER_YEAR,
     CONF_NAME,
     CONF_START_DATE,
     CONF_START_KM,
     DOMAIN,
+    UNIT_KILOMETERS,
+    UNIT_MILES,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -70,6 +73,13 @@ class LeasingTrackerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 vol.Required(CONF_END_DATE): selector.DateSelector(),
                 vol.Required(CONF_START_KM, default=0): cv.positive_int,
                 vol.Required(CONF_KM_PER_YEAR, default=10000): cv.positive_int,
+                vol.Required(CONF_DISTANCE_UNIT, default=UNIT_MILES): selector.SelectSelector(
+                    selector.SelectSelectorConfig(
+                        options=[UNIT_KILOMETERS, UNIT_MILES],
+                        mode=selector.SelectSelectorMode.DROPDOWN,
+                        translation_key=CONF_DISTANCE_UNIT,
+                    )
+                ),
             }
         )
 
@@ -146,6 +156,16 @@ class LeasingTrackerOptionsFlow(config_entries.OptionsFlow):
                     CONF_KM_PER_YEAR,
                     default=self._config_entry.data.get(CONF_KM_PER_YEAR, 10000),
                 ): cv.positive_int,
+                vol.Required(
+                    CONF_DISTANCE_UNIT,
+                    default=self._config_entry.data.get(CONF_DISTANCE_UNIT, UNIT_MILES),
+                ): selector.SelectSelector(
+                    selector.SelectSelectorConfig(
+                        options=[UNIT_KILOMETERS, UNIT_MILES],
+                        mode=selector.SelectSelectorMode.DROPDOWN,
+                        translation_key=CONF_DISTANCE_UNIT,
+                    )
+                ),
             }
         )
 
