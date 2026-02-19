@@ -10,7 +10,8 @@
           "start_date": "Start-Datum des Leasings",
           "end_date": "End-Datum des Leasings",
           "start_km": "Fahrleistung bei Start",
-          "km_per_year": "Erlaubte Fahrleistung pro Jahr"
+          "km_per_year": "Erlaubte Fahrleistung pro Jahr",
+          "distance_unit": "Distanz-Einheit"
         }
       }
     },
@@ -33,7 +34,8 @@
           "start_date": "Start-Datum des Leasings",
           "end_date": "End-Datum des Leasings",
           "start_km": "Fahrleistung bei Start",
-          "km_per_year": "Erlaubte Fahrleistung pro Jahr"
+          "km_per_year": "Erlaubte Fahrleistung pro Jahr",
+          "distance_unit": "Distanz-Einheit"
         }
       }
     },
@@ -115,6 +117,14 @@
           "on_track": "Im Plan",
           "below_plan": "Unter Plan"
         }
+      }
+    }
+  },
+  "selector": {
+    "distance_unit": {
+      "options": {
+        "km": "Kilometer",
+        "mi": "Meilen"
       }
     }
   }

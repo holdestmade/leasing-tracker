@@ -10,7 +10,8 @@
           "start_date": "Lease Start Date",
           "end_date": "Lease End Date",
           "start_km": "Mileage at Start",
-          "km_per_year": "Allowed Mileage per Year"
+          "km_per_year": "Allowed Mileage per Year",
+          "distance_unit": "Distance Unit"
         }
       }
     },
@@ -33,7 +34,8 @@
           "start_date": "Lease Start Date",
           "end_date": "Lease End Date",
           "start_km": "Mileage at Start",
-          "km_per_year": "Allowed Mileage per Year"
+          "km_per_year": "Allowed Mileage per Year",
+          "distance_unit": "Distance Unit"
         }
       }
     },
@@ -115,6 +117,14 @@
           "on_track": "On track",
           "below_plan": "Below plan"
         }
+      }
+    }
+  },
+  "selector": {
+    "distance_unit": {
+      "options": {
+        "km": "Kilometers",
+        "mi": "Miles"
       }
     }
   }

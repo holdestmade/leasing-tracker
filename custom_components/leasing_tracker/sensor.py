@@ -19,12 +19,15 @@ from homeassistant.helpers.event import async_track_state_change_event
 
 from .const import (
     CONF_CURRENT_KM_ENTITY,
+    CONF_DISTANCE_UNIT,
     CONF_END_DATE,
     CONF_KM_PER_YEAR,
     CONF_NAME,
     CONF_START_DATE,
     CONF_START_KM,
     DOMAIN,
+    UNIT_KILOMETERS,
+    UNIT_MILES,
     SENSOR_ALLOWED_KM_PER_MONTH,
     SENSOR_ALLOWED_KM_THIS_MONTH,
     SENSOR_ALLOWED_KM_THIS_YEAR,
@@ -110,6 +113,7 @@ class LeasingTrackerSensor(SensorEntity):
         self._attr_unique_id = f"{entry.entry_id}_{sensor_type}"
         self._attr_translation_key = sensor_type
         self._current_km_entity = self._config[CONF_CURRENT_KM_ENTITY]
+        self._distance_unit = self._config.get(CONF_DISTANCE_UNIT, UNIT_MILES)
         
         # Device Info
         self._attr_device_info = DeviceInfo(
@@ -127,49 +131,49 @@ class LeasingTrackerSensor(SensorEntity):
         sensor_configs = {
             SENSOR_REMAINING_KM_TOTAL: {
                 "icon": "mdi:counter",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_REMAINING_KM_YEAR: {
                 "icon": "mdi:calendar-clock",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_REMAINING_KM_MONTH: {
                 "icon": "mdi:calendar-month",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_REMAINING_KM_YEAR_ACTUAL: {
                 "icon": "mdi:calendar-today",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_REMAINING_KM_MONTH_ACTUAL: {
                 "icon": "mdi:calendar-month-outline",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_ESTIMATED_KM_YEAR_END: {
                 "icon": "mdi:chart-timeline-variant",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_ESTIMATED_KM_MONTH_END: {
                 "icon": "mdi:chart-bell-curve",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "suggested_unit": UnitOfLength.MILES,
@@ -186,54 +190,54 @@ class LeasingTrackerSensor(SensorEntity):
             },
             SENSOR_TOTAL_KM_DRIVEN: {
                 "icon": "mdi:speedometer",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.TOTAL_INCREASING,
                 "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_KM_DRIVEN_THIS_MONTH: {
                 "icon": "mdi:calendar-check",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_KM_DRIVEN_THIS_YEAR: {
                 "icon": "mdi:calendar-star",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_KM_PER_DAY_AVERAGE: {
                 "icon": "mdi:chart-line",
-                "unit": "km/d",
+                "unit": "distance",
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_KM_PER_MONTH_AVERAGE: {
                 "icon": "mdi:chart-bar",
-                "unit": "km/mo",
+                "unit": "distance",
                 "state_class": SensorStateClass.MEASUREMENT,
             },
             SENSOR_ALLOWED_KM_TOTAL: {
                 "icon": "mdi:car-info",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_ALLOWED_KM_PER_MONTH: {
                 "icon": "mdi:calendar-check",
-                "unit": "km/mo",
+                "unit": "distance",
             },
             SENSOR_ALLOWED_KM_THIS_YEAR: {
                 "icon": "mdi:calendar-text",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "suggested_unit": UnitOfLength.MILES,
             },
             SENSOR_ALLOWED_KM_THIS_MONTH: {
                 "icon": "mdi:calendar-outline",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "suggested_unit": UnitOfLength.MILES,
             },
@@ -247,7 +251,7 @@ class LeasingTrackerSensor(SensorEntity):
             },
             SENSOR_KM_DIFFERENCE: {
                 "icon": "mdi:delta",
-                "unit": UnitOfLength.KILOMETERS,
+                "unit": "distance",
                 "device_class": SensorDeviceClass.DISTANCE,
                 "state_class": SensorStateClass.MEASUREMENT,
                 "suggested_unit": UnitOfLength.MILES,
@@ -267,15 +271,19 @@ class LeasingTrackerSensor(SensorEntity):
         config = sensor_configs.get(self._sensor_type, {})
         self._attr_icon = config.get("icon")
 
-        self._attr_native_unit_of_measurement = config.get("unit")
+        self._attr_native_unit_of_measurement = self._resolve_unit(config.get("unit"))
         if "device_class" in config:
             self._attr_device_class = config["device_class"]
         if "state_class" in config:
             self._attr_state_class = config["state_class"]
-        if "suggested_unit" in config:
-            self._attr_suggested_unit_of_measurement = config["suggested_unit"]
         if "options" in config:
             self._attr_options = config["options"]
+
+    def _resolve_unit(self, unit_type: str | None) -> str | None:
+        """Resolve displayed unit from selected distance unit."""
+        if unit_type == "distance":
+            return UnitOfLength.MILES if self._distance_unit == UNIT_MILES else UnitOfLength.KILOMETERS
+        return unit_type
 
     async def async_added_to_hass(self) -> None:
         """Register callbacks."""
